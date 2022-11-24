@@ -78,6 +78,13 @@ impl SortPlayground {
         }
     }
 
+    pub fn insertion_binary(&mut self) {
+        for j in 1..self.data.len() {
+            let found_index = self.insort_left(self.data[j], 0, j);
+            self.perform_insertion(j, found_index);
+        }
+    }
+
     pub fn sorted_percent(&self) -> usize {
         let (all, success, last) = self
             .data
@@ -104,5 +111,35 @@ impl SortPlayground {
         assert!(b < self.data.len());
         self.data.swap(a, b);
         self.asg += 3; // Suppose we make 3 assignments during swap
+    }
+
+    fn insort_left(&mut self, value: i64, a: usize, b: usize) -> usize {
+        let mut low = a;
+        let mut high = b;
+        loop {
+            self.cmp += 1;
+            if low < high {
+                let mid = low + (high - low) / 2;
+                if self.data[mid] < value {
+                    low = mid + 1;
+                } else {
+                    high = mid;
+                }
+            } else {
+                break low;
+            }
+        }
+    }
+
+    fn perform_insertion(&mut self, from: usize, to: usize) {
+        assert!(from < self.data.len());
+        assert!(to <= from);
+        let x = self.data[from];
+        for i in (to..from).rev() {
+            self.asg += 1;
+            self.data[i + 1] = self.data[i];
+        }
+        self.asg += 1;
+        self.data[to] = x;
     }
 }

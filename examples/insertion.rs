@@ -10,8 +10,15 @@ fn main() {
     println!("------------------------------------------");
     println!("Insertion sort with shift.");
     demo(
+        &[10, 100, 1000, 10000, 100000],//, 1_000_000],
+        SortPlayground::random,
+        SortPlayground::insertion_shift,
+    );
+    println!("------------------------------------------");
+    println!("Insertion sort with binary search.");
+    demo(
         &[10, 100, 1000, 10000, 100000, 1_000_000],
         SortPlayground::random,
-        SortPlayground::insertion_shift
-    );
+        SortPlayground::insertion_binary,
+    )
 }
