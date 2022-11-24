@@ -85,16 +85,42 @@ impl SortPlayground {
         }
     }
 
+    pub fn shell_naive(&mut self) {
+        let mut gap = self.data.len() / 2;
+        while gap > 0 {
+            self.perform_shell(gap);
+            gap /= 2;
+        }
+    }
+
+    fn perform_shell(&mut self, gap: usize) {
+        let mut i = 0;
+        let size = self.data.len();
+        while i + gap < size {
+            let mut j = i + gap;
+            let x = self.data[j];
+            while j >= gap && self.data[j - gap] > x {
+                self.cmp += 1;
+                self.asg += 1;
+                self.data[j] = self.data[j - gap];
+                j -= gap;
+            }
+            self.asg += 1;
+            self.data[j] = x;
+            i += 1;
+        }
+    }
+
     pub fn sorted_percent(&self) -> usize {
-        let (all, success, last) = self
+        let (success, last) = self
             .data
             .iter()
             .skip(1)
-            .fold((0, 0, &self.data[0]), |(sum, ok, prev), current| {
-                (sum + 1, if prev < current { ok + 1 } else { ok }, current)
+            .fold((0, &self.data[0]), |(success, prev), current| {
+                (if prev < current { success + 1 } else { success }, current)
             });
         assert_eq!(self.data.last(), Some(last));
-        success * 100 / all
+        success * 100 / (self.data.len() - 1)
     }
 
     pub fn get_report(&self) -> String {

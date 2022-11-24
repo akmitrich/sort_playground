@@ -5,7 +5,7 @@ fn main() {
         a,
         a.sorted_percent()
     );
-    a.insertion_binary();
+    a.shell_naive();
     // let a = sort_playground::sort_playground::SortPlayground::reversed(5);
     println!(
         "{:?} {}%",
