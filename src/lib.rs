@@ -17,7 +17,10 @@ where
 {
     for n in n {
         let mut a = init(*n);
-        println!("Going to sort {}% sorted array of {n} numbers", a.sorted_percent());
+        println!(
+            "Going to sort {}% sorted array of {n} numbers",
+            a.sorted_percent()
+        );
         let elapsed = run_elapsed(|| {
             sort(&mut a);
         });
