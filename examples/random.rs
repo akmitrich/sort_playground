@@ -1,4 +1,4 @@
-use sort_playground::sort_playground::{shell_naive, sort, sorted_percent, SortPlayground};
+use sort_playground::{sorted_percent, shell::shell_naive, sort_playground::{sort, SortPlayground}};
 
 fn main() {
     let a = SortPlayground::random(5);

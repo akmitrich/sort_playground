@@ -1,4 +1,4 @@
-use sort_playground::sort_playground::{shell1, shell_ciura, shell_naive, sort, SortPlayground};
+use sort_playground::{sort_playground::{sort, SortPlayground}, shell::{shell1, shell_ciura, shell_naive}};
 
 const RANDOM_PATH: &str = "../sorting-tests/0.random";
 const DIGITS_PATH: &str = "../sorting-tests/1.digits";

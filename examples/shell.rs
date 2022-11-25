@@ -1,4 +1,4 @@
-use sort_playground::{demo, sort_playground::{SortPlayground, shell_naive, shell_ciura, shell1}};
+use sort_playground::{demo, shell, sort_playground::{SortPlayground}};
 
 fn main() {
     println!("Sort with naive shell sort.");
@@ -8,7 +8,7 @@ fn main() {
             //            100_000_000,
         ],
         SortPlayground::random,
-        shell_naive,
+        shell::shell_naive,
     );
     println!("----------------------------------------");
     println!("Ciura gaps shell sort.");
@@ -18,7 +18,7 @@ fn main() {
             //            100_000_000,
         ],
         SortPlayground::random,
-        shell_ciura,
+        shell::shell_ciura,
     );
     println!("----------------------------------------");
     println!("Some gaps shell sort.");
@@ -28,6 +28,6 @@ fn main() {
             //            100_000_000,
         ],
         SortPlayground::random,
-        shell1,
+        shell::shell1,
     );
 }
