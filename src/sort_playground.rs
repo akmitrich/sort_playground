@@ -18,7 +18,7 @@ impl SortPlayground {
     }
 
     pub fn reversed(n: usize) -> Self {
-        let a: Vec<i64> = (0..n).rev().map(|x| x as i64).collect();
+        let a: Vec<_> = (0..n as i64).rev().collect();
         Self {
             data: a,
             ..Default::default()

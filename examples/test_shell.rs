@@ -1,4 +1,4 @@
-use sort_playground::{sort_playground::{sort, SortPlayground}, shell::{shell1, shell_ciura, shell_naive}};
+use sort_playground::{perform_test, shell::{shell1, shell_ciura, shell_naive}};
 
 const RANDOM_PATH: &str = "../sorting-tests/0.random";
 const DIGITS_PATH: &str = "../sorting-tests/1.digits";
@@ -6,10 +6,6 @@ const SORTED_PATH: &str = "../sorting-tests/2.sorted";
 const REVERS_PATH: &str = "../sorting-tests/3.revers";
 
 fn main() {
-    test_shell();
-}
-
-fn test_shell() {
     println!("{}", "=".repeat(80));
     println!("TEST SHELL SORT ALGORITHMS.");
     perform_test(
@@ -73,18 +69,4 @@ fn test_shell() {
         shell1,
     );
     println!("{}", "=".repeat(80));
-}
-
-fn perform_test<Sort: Fn(SortPlayground) -> SortPlayground>(path: &str, title: &str, method: Sort) {
-    let hline: String = "-".repeat(80);
-    println!("{hline}");
-    println!("{title}");
-    sort_playground::tester::run_test(path, |data| {
-        sort(data[1].split(' ').map(|x| x.parse().unwrap()), &method)
-            .into_iter()
-            .map(|x| x.to_string())
-            .collect::<Vec<String>>()
-            .join(" ")
-    });
-    println!("{hline}");
 }

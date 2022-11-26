@@ -1,6 +1,6 @@
 use std::time::Instant;
 
-use sort_playground::{SortPlayground};
+use sort_playground::SortPlayground;
 
 pub mod sort_playground;
 pub mod bubble;
@@ -24,6 +24,35 @@ where
         let elapsed = Instant::now().duration_since(start);
         println!("Sorted {n} numbers in {elapsed:?}. {}", a.get_report());
     }
+}
+
+
+pub fn perform_test<Sort: Fn(SortPlayground) -> SortPlayground>(path: &str, title: &str, method: Sort) {
+    let hline: String = "-".repeat(80);
+    println!("{hline}");
+    println!("{title}");
+    tester::run_test(path, |data| {
+        sort_playground::sort(data[1].split(' ').map(|x| x.parse().unwrap()), &method)
+            .into_iter()
+            .map(|x| x.to_string())
+            .collect::<Vec<String>>()
+            .join(" ")
+    });
+    println!("{hline}");
+}
+
+pub fn perform_test_lim<Sort: Fn(SortPlayground) -> SortPlayground>(path: &str, max_test: u8, title: &str, method: Sort) {
+    let hline: String = "-".repeat(80);
+    println!("{hline}");
+    println!("{title}");
+    tester::run_test_lim(path, |data| {
+        sort_playground::sort(data[1].split(' ').map(|x| x.parse().unwrap()), &method)
+            .into_iter()
+            .map(|x| x.to_string())
+            .collect::<Vec<String>>()
+            .join(" ")
+    }, max_test);
+    println!("{hline}");
 }
 
 pub fn sorted_percent<'a>(mut data: impl Iterator<Item = &'a i64>) -> usize {
