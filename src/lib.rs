@@ -2,10 +2,10 @@ use std::time::Instant;
 
 use sort_playground::SortPlayground;
 
-pub mod sort_playground;
 pub mod bubble;
 pub mod insertion;
 pub mod shell;
+pub mod sort_playground;
 pub mod tester;
 
 pub fn demo<Init, Sort>(n: &[usize], init: Init, sort: Sort)
@@ -26,13 +26,19 @@ where
     }
 }
 
-
-pub fn perform_test<Sort: Fn(SortPlayground) -> SortPlayground>(path: &str, title: &str, method: Sort) {
+pub fn perform_test<Sort: Fn(SortPlayground) -> SortPlayground>(
+    path: &str,
+    title: &str,
+    method: Sort,
+) {
     let hline: String = "-".repeat(80);
     println!("{hline}");
     println!("{title}");
-    tester::run_test(path, |data| {
-        sort_playground::sort(data[1].split(' ').map(|x| x.parse().unwrap()), &method)
+    tester::run_silently(path, |data| {
+        let playground =
+            sort_playground::sort(data[1].split(' ').map(|x| x.parse().unwrap()), &method);
+        println!("{}", playground.get_report());
+        playground
             .into_iter()
             .map(|x| x.to_string())
             .collect::<Vec<String>>()
@@ -41,17 +47,29 @@ pub fn perform_test<Sort: Fn(SortPlayground) -> SortPlayground>(path: &str, titl
     println!("{hline}");
 }
 
-pub fn perform_test_lim<Sort: Fn(SortPlayground) -> SortPlayground>(path: &str, max_test: u8, title: &str, method: Sort) {
+pub fn perform_test_lim<Sort: Fn(SortPlayground) -> SortPlayground>(
+    path: &str,
+    max_test: u8,
+    title: &str,
+    method: Sort,
+) {
     let hline: String = "-".repeat(80);
     println!("{hline}");
     println!("{title}");
-    tester::run_test_lim(path, |data| {
-        sort_playground::sort(data[1].split(' ').map(|x| x.parse().unwrap()), &method)
-            .into_iter()
-            .map(|x| x.to_string())
-            .collect::<Vec<String>>()
-            .join(" ")
-    }, max_test);
+    tester::run_test_lim(
+        path,
+        |data| {
+            let playground =
+                sort_playground::sort(data[1].split(' ').map(|x| x.parse().unwrap()), &method);
+            println!("{}", playground.get_report());
+            playground
+                .into_iter()
+                .map(|x| x.to_string())
+                .collect::<Vec<String>>()
+                .join(" ")
+        },
+        max_test,
+    );
     println!("{hline}");
 }
 
@@ -60,10 +78,13 @@ pub fn sorted_percent<'a>(mut data: impl Iterator<Item = &'a i64>) -> usize {
     let (sum, success, _) = data.fold((0, 0, start), |(sum, success, prev), current| {
         (
             sum + 1,
-            if prev < current { success + 1 } else { success },
+            if prev <= current { success + 1 } else { success },
             current,
         )
     });
-    success * 100 / sum
+    if sum > 0 {
+        success * 100 / sum
+    } else {
+        100
+    }
 }
-

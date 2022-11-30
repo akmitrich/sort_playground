@@ -1,4 +1,4 @@
-use sort_playground::{demo, insertion, sort_playground::{SortPlayground}};
+use sort_playground::{demo, insertion, sort_playground::SortPlayground};
 
 fn main() {
     println!("Simple insertion sort.");

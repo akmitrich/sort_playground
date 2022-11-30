@@ -31,14 +31,15 @@ impl SortPlayground {
 
     pub fn get_report(&self) -> String {
         format!(
-            "Sorted {}% with {} comparisons and {} assignments.",
+            "{} numbers. Sorted {}% with {} comparisons and {} assignments.",
+            self.data.len(),
             crate::sorted_percent(self.iter()),
             self.cmp,
             self.asg
         )
     }
 
-    pub (crate) fn swap(&mut self, a: usize, b: usize) {
+    pub(crate) fn swap(&mut self, a: usize, b: usize) {
         assert!(a < self.data.len());
         assert!(b < self.data.len());
         self.data.swap(a, b);

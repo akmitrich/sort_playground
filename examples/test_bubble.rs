@@ -1,4 +1,7 @@
-use sort_playground::{bubble::{bubble_sort, bubble_opt}, perform_test_lim};
+use sort_playground::{
+    bubble::{bubble_opt, bubble_sort},
+    perform_test_lim,
+};
 
 const RANDOM_PATH: &str = "../sorting-tests/0.random";
 const DIGITS_PATH: &str = "../sorting-tests/1.digits";
@@ -20,18 +23,8 @@ fn main() {
         "Bubble sort optimized. Random numbers.",
         bubble_opt,
     );
-    perform_test_lim(
-        DIGITS_PATH,
-        5,
-        "Bubble sort classic. Digits.",
-        bubble_sort,
-    );
-    perform_test_lim(
-        DIGITS_PATH,
-        5,
-        "Bubble sort optimized. Digits.",
-        bubble_opt,
-    );
+    perform_test_lim(DIGITS_PATH, 6, "Bubble sort classic. Digits.", bubble_sort);
+    perform_test_lim(DIGITS_PATH, 6, "Bubble sort optimized. Digits.", bubble_opt);
     perform_test_lim(
         SORTED_PATH,
         5,
@@ -40,7 +33,7 @@ fn main() {
     );
     perform_test_lim(
         SORTED_PATH,
-        6,
+        5,
         "Bubble sort optimized. Sorted array.",
         bubble_opt,
     );

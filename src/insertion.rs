@@ -1,6 +1,5 @@
 use crate::sort_playground::SortPlayground;
 
-
 pub fn insertion(mut ins: SortPlayground) -> SortPlayground {
     for j in 1..ins.data.len() {
         for i in (0..j).rev() {
@@ -72,4 +71,3 @@ fn perform_insertion(ins: &mut SortPlayground, from: usize, to: usize) {
     ins.asg += 1;
     ins.data[to] = x;
 }
-

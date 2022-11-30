@@ -1,6 +1,5 @@
 use crate::sort_playground::SortPlayground;
 
-
 pub fn bubble_sort(mut bubble: SortPlayground) -> SortPlayground {
     for j in (0..bubble.data.len()).rev() {
         for i in 0..j {

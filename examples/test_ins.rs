@@ -1,4 +1,7 @@
-use sort_playground::{insertion::{insertion, insertion_shift, insertion_binary}, perform_test_lim};
+use sort_playground::{
+    insertion::{insertion, insertion_binary, insertion_shift},
+    perform_test_lim,
+};
 
 const RANDOM_PATH: &str = "../sorting-tests/0.random";
 const DIGITS_PATH: &str = "../sorting-tests/1.digits";
@@ -26,12 +29,7 @@ fn main() {
         "Insertion sort with shift and binary search. Random numbers.",
         insertion_binary,
     );
-    perform_test_lim(
-        DIGITS_PATH,
-        5,
-        "Insertion sort classic. Digits.",
-        insertion,
-    );
+    perform_test_lim(DIGITS_PATH, 5, "Insertion sort classic. Digits.", insertion);
     perform_test_lim(
         DIGITS_PATH,
         5,
@@ -52,13 +50,13 @@ fn main() {
     );
     perform_test_lim(
         SORTED_PATH,
-        6,
+        5,
         "Insertion sort with shift. Sorted array.",
         insertion_shift,
     );
     perform_test_lim(
         SORTED_PATH,
-        6,
+        5,
         "Insertion sort with shift and binary search. Sorted array.",
         insertion_binary,
     );

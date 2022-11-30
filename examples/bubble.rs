@@ -1,8 +1,4 @@
-use sort_playground::{
-    bubble,
-    demo,
-    sort_playground::{SortPlayground},
-};
+use sort_playground::{bubble, demo, sort_playground::SortPlayground};
 
 fn main() {
     println!("Sort with naive bubble sort.");

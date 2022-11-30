@@ -1,4 +1,4 @@
-use sort_playground::{demo, shell, sort_playground::{SortPlayground}};
+use sort_playground::{demo, shell, sort_playground::SortPlayground};
 
 fn main() {
     println!("Sort with naive shell sort.");
