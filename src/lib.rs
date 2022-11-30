@@ -3,9 +3,10 @@ use std::time::Instant;
 use sort_playground::SortPlayground;
 
 pub mod bubble;
+pub mod heapsort;
 pub mod insertion;
-pub mod shell;
 pub mod selection;
+pub mod shell;
 pub mod sort_playground;
 pub mod tester;
 
@@ -79,7 +80,11 @@ pub fn sorted_percent<'a>(mut data: impl Iterator<Item = &'a i64>) -> usize {
     let (sum, success, _) = data.fold((0, 0, start), |(sum, success, prev), current| {
         (
             sum + 1,
-            if prev <= current { success + 1 } else { success },
+            if prev <= current {
+                success + 1
+            } else {
+                success
+            },
             current,
         )
     });

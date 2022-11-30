@@ -1,7 +1,4 @@
-use sort_playground::{
-    selection::selection_sort,
-    perform_test_lim,
-};
+use sort_playground::{perform_test_lim, selection::selection_sort};
 
 const RANDOM_PATH: &str = "../sorting-tests/0.random";
 const DIGITS_PATH: &str = "../sorting-tests/1.digits";
