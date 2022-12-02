@@ -5,6 +5,7 @@ use sort_playground::SortPlayground;
 pub mod bubble;
 pub mod heapsort;
 pub mod insertion;
+pub mod merge;
 pub mod quick;
 pub mod selection;
 pub mod shell;

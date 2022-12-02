@@ -1,4 +1,4 @@
-use sort_playground::{quick::quick_sort, perform_test, perform_test_lim};
+use sort_playground::{perform_test, perform_test_lim, quick::quick_sort};
 
 const RANDOM_PATH: &str = "../sorting-tests/0.random";
 const DIGITS_PATH: &str = "../sorting-tests/1.digits";

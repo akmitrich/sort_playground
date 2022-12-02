@@ -3,7 +3,7 @@ use rand::Rng;
 
 pub fn quick_sort(mut quick: SortPlayground) -> SortPlayground {
     let size = quick.data.len() as isize;
-    rec_sort(&mut quick, 0,  size - 1);
+    rec_sort(&mut quick, 0, size - 1);
     quick
 }
 
@@ -27,7 +27,7 @@ fn partition_high(playground: &mut SortPlayground, low: isize, high: isize) -> i
         }
     }
     pivot_index += 1;
-    playground.swap(pivot_index as usize, high as usize);
+    playground.swap(pivot_index as _, high as _);
     pivot_index
 }
 
@@ -40,11 +40,11 @@ fn partition_low(playground: &mut SortPlayground, low: isize, high: isize) -> is
         playground.cmp += 1;
         if playground.data[j as usize] < pivot_element {
             pivot_index += 1;
-            playground.swap(pivot_index as usize, j as usize);
+            playground.swap(pivot_index as _, j as _);
         }
     }
     pivot_index += 1;
-    playground.swap(pivot_index as usize, high as usize);
+    playground.swap(pivot_index as _, high as _);
     pivot_index
 }
 
@@ -58,10 +58,10 @@ fn partition_rand(playground: &mut SortPlayground, low: isize, high: isize) -> i
         playground.cmp += 1;
         if playground.data[j as usize] < pivot_element {
             pivot_index += 1;
-            playground.swap(pivot_index as usize, j as usize);
+            playground.swap(pivot_index as _, j as _);
         }
     }
     pivot_index += 1;
-    playground.swap(pivot_index as usize, high as usize);
+    playground.swap(pivot_index as _, high as _);
     pivot_index
 }
