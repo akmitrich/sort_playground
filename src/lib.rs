@@ -3,6 +3,7 @@ use std::time::Instant;
 use sort_playground::SortPlayground;
 
 pub mod bubble;
+pub mod external;
 pub mod heapsort;
 pub mod insertion;
 pub mod merge;

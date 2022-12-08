@@ -12,7 +12,14 @@ pub fn run_silently(path: impl AsRef<Path>, solver: impl Fn(Vec<&str>) -> String
         path,
         solver,
         |n, t, expected, solved| {
-            report_one(n, t, expected, solved);
+            println!(
+                "Test {n} is {} in {t:?}.",
+                if expected == solved {
+                    "passed"
+                } else {
+                    "FAILED"
+                }
+            );
             true
         },
         final_report,
@@ -78,12 +85,16 @@ fn final_report(ok: i32, failed: i32) {
 }
 
 fn report_one(n: u8, t: Duration, expected: &str, solved: &str) {
+    let passed = expected == solved;
     println!(
         "Test {n} is {} in {t:?}.",
-        if expected == solved {
-            "passed"
-        } else {
-            "FAILED"
-        }
+        if passed { "passed" } else { "FAILED" }
     );
+    if !passed {
+        println!(
+            "Expected = '{}'\nSolved = {}",
+            expected.chars().take(80).collect::<String>(),
+            solved.chars().take(80).collect::<String>(),
+        );
+    }
 }
