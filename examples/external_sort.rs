@@ -1,6 +1,6 @@
 use dotenv::{dotenv, var};
 use sort_playground::external::num_file_iter;
-use std::{fs::File, io, path::Path};
+use std::{fs::File, io, path::Path, time::Instant};
 
 fn main() -> io::Result<()> {
     dotenv().unwrap();
@@ -24,11 +24,13 @@ fn main() -> io::Result<()> {
         base_path.join(&parameter_input),
         sorted_percent(base_path.join(&parameter_input))
     );
+    let start = Instant::now();
     method(base_path, &parameter_input, &parameter_output, chunk_size)?;
     println!(
-        "Sort complete. Sorted {}% at {:?}",
+        "Sort complete. Sorted {}% at {:?}. Time elapsed: {:?}",
         sorted_percent(base_path.join(&parameter_output)),
         base_path.join(&parameter_output),
+        Instant::now().duration_since(start),
     );
     Ok(())
 }
