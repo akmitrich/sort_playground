@@ -9,8 +9,10 @@ use std::{
 };
 
 mod naive;
+mod two_files;
 
 pub use naive::naive;
+pub use two_files::two_files;
 
 pub fn create_file_random_numbers(path: impl AsRef<Path>, n: usize, t: i64) -> io::Result<()> {
     let mut file = File::create(path)?;
@@ -29,7 +31,7 @@ pub fn create_file_random_numbers(path: impl AsRef<Path>, n: usize, t: i64) -> i
     Ok(())
 }
 
-fn num_file_iter(input: &File) -> impl Iterator<Item = i64> + '_ {
+pub fn num_file_iter(input: &File) -> impl Iterator<Item = i64> + '_ {
     io::BufReader::new(input)
         .lines()
         .filter_map(|x| x.ok())
