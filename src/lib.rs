@@ -6,6 +6,7 @@ pub mod bubble;
 pub mod external;
 pub mod heapsort;
 pub mod insertion;
+pub mod linear;
 pub mod merge;
 pub mod quick;
 pub mod selection;
