@@ -1,6 +1,6 @@
 use sort_playground::{
-    linear::{counting_sort, radix_sort_4bits, radix_sort_8bits},
-    perform_test,
+    linear::{counting_sort, generic_bucket_sort, radix_sort_4bits, radix_sort_8bits},
+    perform_test, perform_test_lim,
 };
 
 const RANDOM_PATH: &str = "../sorting-tests/0.random";
@@ -9,6 +9,25 @@ const SORTED_PATH: &str = "../sorting-tests/2.sorted";
 const REVERS_PATH: &str = "../sorting-tests/3.revers";
 
 fn main() {
+    println!("{}", "=".repeat(80));
+    println!("TEST BUCKET SORT ALGORITHM.");
+    perform_test(
+        RANDOM_PATH,
+        "Bucket sort. Random numbers.",
+        generic_bucket_sort,
+    );
+    perform_test_lim(DIGITS_PATH, 6, "Bucket sort. Digits.", generic_bucket_sort);
+    perform_test(
+        SORTED_PATH,
+        "Bucket sort. Sorted array.",
+        generic_bucket_sort,
+    );
+    perform_test(
+        REVERS_PATH,
+        "Bucket sort. Reversed array.",
+        generic_bucket_sort,
+    );
+    println!("{}", "=".repeat(80));
     println!("{}", "=".repeat(80));
     println!("TEST COUNTING SORT ALGORITHM.");
     perform_test(RANDOM_PATH, "Counting sort. Random numbers.", counting_sort);
